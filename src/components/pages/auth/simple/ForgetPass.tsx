@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import TextField from '@/components/ui/inputs/TextField';
-import Button from '@/components/ui/button';
+import Button from '@/components/ui/button/index';
 import { Paper } from '@mui/material';
 
 export default function ForgetPassSimple() {
