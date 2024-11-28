@@ -1,0 +1,13 @@
+.text-editor .ql-toolbar {
+  @apply w-fit border-none bg-white rounded-lg h-8 !p-0 flex justify-center items-center;
+}
+.text-editor .ql-container,
+.text-editor .ql-container.ql-snow {
+  @apply bg-white drop-shadow-sm !border-none !mt-3;
+}
+.text-editor .ql-editor {
+  @apply border rounded-lg;
+}
+.text-editor .ql-editor::before {
+  font-style: normal !important;
+}

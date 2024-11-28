@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Yati";
+  src: url("/fonts/yati.ttf");
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --main-background-rgb: 249, 250, 251;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  /* color: rgb(var(--main-background-rgb)); */
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+  background: #fff;
+  overflow-x: hidden;
+  
+}
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#nprogress .bar {
+  z-index: 99999 !important;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.truncate-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Adjust the number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
