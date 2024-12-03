@@ -7,8 +7,13 @@ import PrimaryButton from '@/components/ui/button/PrimaryButton';
 import Image from 'next/image';
 import Card from './Card';
 import Input from '@/components/ui/inputs/Input';
-import { useGetJobList, useGetJobTypeList, useGetPopularJobTitle, useGetSalaryRange } from '@/services/jobService';
-import Select from 'react-select'
+import {
+  useGetJobList,
+  useGetJobTypeList,
+  useGetPopularJobTitle,
+  useGetSalaryRange,
+} from '@/services/jobService';
+import Select from 'react-select';
 import { useTranslation } from 'react-i18next';
 import FirstLogo from '@/components/icons/firstLogo';
 import RightArr from '@/components/icons/rightArr';
@@ -26,38 +31,31 @@ import Eye from '@/components/icons/eye';
 import { useRouter } from 'next/navigation';
 import CTA from '../cta';
 const Jobs = () => {
-
   const { t, i18n } = useTranslation();
   let currentLocale = i18n.language;
 
   const [jobSearchTitle, setJobSearchTitle] = useState<string>('');
   const [jobSearchType, setJobSearchType] = useState<string[]>([]);
 
+  const { data: jobTyeList } = useGetJobTypeList();
+  const { data: popularJobTitle } = useGetPopularJobTitle();
+  console.log('popularJobTitle', popularJobTitle);
 
+  const jobTyeListOption = jobTyeList?.data?.map((_: any) => ({
+    label: _?.name,
+    value: _?.id,
+  }));
 
-  const { data: jobTyeList } = useGetJobTypeList()
-  const {data:popularJobTitle}=useGetPopularJobTitle();
-  console.log("popularJobTitle",popularJobTitle)
-
-
-
-
-  const jobTyeListOption = jobTyeList?.data?.map((_: any) => (
-    {
-      label: _?.name,
-      value: _?.id,
-    }
-  ))
-
-
-  const { data: jobLists } = useGetJobList({ pageIndex: 0, pageSize: 4 }, jobSearchTitle, jobSearchType)
-
+  const { data: jobLists } = useGetJobList(
+    { pageIndex: 0, pageSize: 4 },
+    jobSearchTitle,
+    jobSearchType
+  );
 
   const [jobTitle, setJobTitle] = useState<string>('');
   const [jobType, setJobType] = useState<any>([]);
 
-
-  const router = useRouter()
+  const router = useRouter();
 
   const handleRoute = (id: string) => {
     router.push(`/jobs/${1}`);
@@ -69,16 +67,15 @@ const Jobs = () => {
     const idArray = jobType?.map((_: any) => _?.value);
     setJobType(idArray);
 
-    setJobSearchTitle(jobTitle)
-    setJobSearchType(idArray)
-
+    setJobSearchTitle(jobTitle);
+    setJobSearchType(idArray);
   };
   return (
     <section id="Job Lists" className="pt-10 pb-10 lg:mt-auto bg-[#E0F2FE]  lg:pt-20 lg:pb-auto">
       <div className="container px-8 mx-auto">
         <div className="flex flex-col w-full gap-8 p-10 bg-white rounded-md drop-shadow">
           <h1 className="text-2xl lg:text-3xl font-semibold text-[#197CC0] text-center">
-            {t("open_a_new_chapter_in_your_life_with_jplus_lbl")}
+            {t('open_a_new_chapter_in_your_life_with_jplus_lbl')}
           </h1>
 
           {/* job searching input */}
@@ -89,27 +86,24 @@ const Jobs = () => {
             <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-2 md:grow">
               <input
                 type="text"
-                placeholder={t("job_title_lbl")}
+                placeholder={t('job_title_lbl')}
                 value={jobTitle}
                 onChange={(e: any) => setJobTitle(e.target.value)}
-
                 className="w-full px-4 py-[10px] text-sm border rounded-md outline-none"
               />
 
               {jobTyeListOption && (
                 <Select
-                  className='text-sm'
+                  className="text-sm"
                   isMulti
                   menuPortalTarget={document.body}
-                  menuPosition='fixed'
+                  menuPosition="fixed"
                   options={jobTyeListOption}
-                  placeholder={t("job_type_lbl")}
+                  placeholder={t('job_type_lbl')}
                   onChange={(e: any) => {
-
                     setJobType(e);
                   }}
                   styles={{
-
                     control: (base: any) => ({
                       ...base,
                       border: '1.5px solid #D0D5DD',
@@ -124,18 +118,15 @@ const Jobs = () => {
                       minHeight: 43,
                     }),
 
-                    menu: provided => ({
-                      ...provided, zIndex: 100000000000
-                    })
-
+                    menu: (provided) => ({
+                      ...provided,
+                      zIndex: 100000000000,
+                    }),
                   }}
                 />
               )}
-
-
             </div>
             <PrimaryButton
-
               className={`text-sm  font-semibold px-4 py-2 lg:py-1 gap-2 min-w-fit`}
               type="submit"
             >
@@ -153,27 +144,25 @@ const Jobs = () => {
           </form>
 
           <p className="text-sm  gap-3 text-[#1D2939] flex items-center justify-center flex-wrap">
-            {
-              <span className='text-[#475467]'> {t("popular_job_lbl")}</span>
-            } :{' '}
-
-            {
-                popularJobTitle?.data?.map((_y:any)=>(<span className='px-2 py-1 inline-block rounded-full bg-[#EFF8FF] text-[#197CC0]' key={_y?.name}>{_y?.name}</span>))
-            }
-          
+            {<span className="text-[#475467]"> {t('popular_job_lbl')}</span>} :{' '}
+            {popularJobTitle?.data?.map((_y: any) => (
+              <span
+                className="px-2 py-1 inline-block rounded-full bg-[#EFF8FF] text-[#197CC0]"
+                key={_y?.name}
+              >
+                {_y?.name}
+              </span>
+            ))}
           </p>
         </div>
 
         <div className="z-[1] relative grid grid-cols-1 gap-5 mt-10 md:gap-8 lg:gap-10 md:mt-16 lg:grid-cols-2 drop-shadow ">
           {jobLists?.data?.length > 0 ? (
-            jobLists?.data?.map((job:any) => 
-              <Card jobData={job} key={job.id}/>
-          )
+            jobLists?.data?.map((job: any) => <Card jobData={job} key={job.id} />)
           ) : (
             <p className="">{''}</p>
           )}
-         
-          
+
           {/* <div className='bg-white rounded-md text-xs 2xl:text-sm py-4  '>
             <div className='flex flex-col gap-4 '>
               <div className='flex px-4 items-center justify-between capitalize flex-wrap'>
@@ -291,18 +280,16 @@ const Jobs = () => {
             </div>
           </Link>
         )} */}
-       <Link href={'/jobs'}>
-       <div className='rounded-md flex items-center cursor-pointer mt-7 justify-center gap-3 text-sm font-semibold bg-white shadow w-[350px] mx-auto p-3'>
-              <p className='text-[#197CC0]'>{t("view_all_jobs_lbl")}</p>
-              <p>
-              <Eye/>
-
-              </p>
-        </div>
+        <Link href={'/jobs'}>
+          <div className="rounded-md flex items-center cursor-pointer mt-7 justify-center gap-3 text-sm font-semibold bg-white shadow w-[350px] mx-auto p-3">
+            <p className="text-[#197CC0]">{t('view_all_jobs_lbl')}</p>
+            <p>
+              <Eye />
+            </p>
+          </div>
         </Link>
-       
       </div>
-      <CTA/>
+      <CTA />
     </section>
   );
 };

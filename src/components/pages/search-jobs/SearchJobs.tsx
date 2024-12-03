@@ -470,7 +470,7 @@ const SearchJobs = () => {
                         <Loading color="#197CC0" />
                       </div>
                     }
-                    endMessage={<p></p>}
+                    endMessage={<p className='w-full text-center'>End of Job List</p>}
                     dataLength={paginatedData?.length ?? 0}
                     scrollableTarget="scrollableDiv"
                   >
