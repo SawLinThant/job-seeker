@@ -161,7 +161,7 @@ const SearchJobs = () => {
   };
 
   useEffect(() => {
-    console.log('searchP:', searchP);
+    //console.log('searchP:', searchP);
   }, [searchP]);
 
   const {

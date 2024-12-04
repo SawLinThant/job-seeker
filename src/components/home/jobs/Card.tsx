@@ -81,7 +81,7 @@ const Card: React.FC<any> = ({ jobData, mutateInfinite }) => {
           <p className="text-[#667085]">Posted {jobData.date}</p>
           <div className="flex items-center gap-2">
             <Lotting />
-            <p className='capitalize'>{jobData.gender}</p>
+            <p className="capitalize">{jobData.gender}</p>
             <span className="inline-block w-[1px] bg-[#D0D5DD] h-[15px]"></span>
             <p className="text-[#197CC0]">Last apply date : {jobData.lastApplyDate}</p>
           </div>
@@ -97,7 +97,7 @@ const Card: React.FC<any> = ({ jobData, mutateInfinite }) => {
               <span className="inline-block text-[#667085]">{jobData.views} </span>
               <span className="inline-block w-[1px] bg-[#D0D5DD] h-[15px]" />
               <ManyUser />
-              <span className="inline-block text-[#667085]">{jobData.applicants}  Applicants</span>
+              <span className="inline-block text-[#667085]">{jobData.applicants} Applicants</span>
             </div>
             <div className="flex items-center flex-wrap gap-3">
               <button
@@ -165,34 +165,42 @@ const Card: React.FC<any> = ({ jobData, mutateInfinite }) => {
               <button
                 disabled={jobData?.is_applied}
                 onClick={async () => {
-                  if (studentId) {
-                    await jobApplyTrigger(
-                      {
-                        id: jobData?.id,
-                      },
-                      {
-                        onSuccess: (res) => {
-                          mutatePopularJobList();
-                          showMessage({
-                            message: res?.data?.data?.message,
-                            severity: SEVERITY.SUCCESS,
-                          });
-                          mutate();
-                          mutateInfinite && mutateInfinite();
+                  try {
+                    if (studentId) {
+                      await jobApplyTrigger(
+                        {
+                          id: jobData?.id,
                         },
-                        onError: (error) => {
-                          showMessage({
-                            message: error?.response?.data?.message,
-                            severity: SEVERITY.ERROR,
-                          });
-                        },
-                      }
-                    );
-                  } else {
-                    router.push(`/${currentLocale}/login`);
+                        {
+                          onSuccess: (res) => {
+                            mutatePopularJobList();
+                            showMessage({
+                              message: res?.data?.data?.message,
+                              severity: SEVERITY.SUCCESS,
+                            });
+                            mutate();
+                            mutateInfinite && mutateInfinite();
+                          },
+                          onError: (error) => {
+                            showMessage({
+                              message: error?.response?.data?.message,
+                              severity: SEVERITY.ERROR,
+                            });
+                          },
+                        }
+                      );
+                    } else {
+                      router.push(`/${currentLocale}/login`);
+                    }
+                  } catch (error) {
+                    console.log('error triggering apply job', error);
+                  } finally {
                   }
                 }}
-                className={cn("p-3 flex items-center gap-3 bg-[#197CC0] hover:bg-[#154e77] transition-all duration-100 ease-in-out  text-white rounded-lg",jobData?.is_applied && "pointer-events-none opacity-50")}
+                className={cn(
+                  'p-3 flex items-center gap-3 bg-[#197CC0] hover:bg-[#154e77] transition-all duration-100 ease-in-out  text-white rounded-lg',
+                  jobData?.is_applied && 'pointer-events-none opacity-50'
+                )}
               >
                 <JobIcon />{' '}
                 <span className="text-sm">
