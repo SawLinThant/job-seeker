@@ -142,22 +142,22 @@ const SlideFadeComponent = ({ expandedDiv }: { expandedDiv: (id: number) => void
   const items = [
     <SlideItem
       key={1}
-      title="banner_label_lbl"
+      title="hero_lbl_one"
       description="れをから作成というを独自場合れ物にならのを10物2文書が記事文ばい引用がさを."
     />,
     <SlideItem
       key={2}
-      title="banner_label_lbl"
+      title="hero_lbl_two"
       description="れをから作成というを独自場合れ物にならのを10物2文書が記事文ばい引用がさを."
     />,
     <SlideItem
       key={3}
-      title="banner_label_lbl"
+      title="hero_lbl_three"
       description="れをから作成というを独自場合れ物にならのを10物2文書が記事文ばい引用がさを."
     />,
     <SlideItem
       key={4}
-      title="banner_label_lbl"
+      title="hero_lbl_four"
       description="れをから作成というを独自場合れ物にならのを10物2文書が記事文ばい引用がさを."
     />,
   ];

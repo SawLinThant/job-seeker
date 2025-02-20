@@ -8,11 +8,36 @@ import { useTranslation } from 'react-i18next';
 import { DialerSip } from '@mui/icons-material';
 import DiamonLeft from '@/components/icons/DiamonLeft';
 import DiamondRight from '@/components/icons/arrow-right';
+import { useMutateSubscribe } from '@/services/subscribe';
+import { SEVERITY, useSnackbar } from '@/components/ui/snackbar/SnackbarContext';
+import React from 'react';
+import Loading from '@/components/ui/loading/Loading';
 
 const NewsLetter = () => {
   const [email, setEmail] = useState<string>('');
+  const {showMessage} = useSnackbar();
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-  const {t}=useTranslation()
+  const [isLoading, setIsLoading] = React.useState(false);
+  const {t}=useTranslation();
+   const { trigger: subscribeTrigger, isMutating } = useMutateSubscribe();
+
+   const handleSubmit = async (e: any) => {
+    console.log("subscribe function called")
+    //e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      await subscribeTrigger({ email });
+      setIsSubmitted(true);
+    } catch (error: any) {
+      showMessage({
+        message: error?.response?.data?.message || t("error_occurred"),
+        severity: SEVERITY.ERROR,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     let timeout: any;
@@ -23,15 +48,17 @@ const NewsLetter = () => {
       }, 2000);
     }
 
+    console.log(isLoading)
+
     return () => {
       clearTimeout(timeout);
     };
   }, [isSubmitted]);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   setIsSubmitted(true);
+  // };
   return (
     <section className="bg-[#197CC0] overflow-hidden relative md:my-12 py-10 max-md:px-8 max-md:pt-20 md:py-6 lg:py-16">
       <div className='absolute left-0 top-0'>
@@ -54,7 +81,7 @@ const NewsLetter = () => {
 
           <div className="flex flex-col justify-center md:py-6 lg:py-0">
             <h1 className="mb-2 text-2xl font-semibold text-white lg:text-4xl lg:mb-5">
-             {t("subscribe_to_our_newsletter_for_the_latest_news_lbl")}
+             {t("subscribe_lbl_header")}
             </h1>
             <p className="text-sm md:text-md lg:text-xl font-medium text-[#FCFCFD] mb-8 lg:mb-12">
             {/* {t("subscribe_for_exclusive_career_insights_lbl")} */}
@@ -77,7 +104,7 @@ const NewsLetter = () => {
               <SecondaryButton
                 className={`text-sm font-semibold text-primary whitespace-nowrap px-10 py-2 md:px-4 md:py-2.5 justify-center w-fit`}
               >
-                {t("to_subscribe_lbl")}
+              {isLoading ? <Loading /> : t("to_subscribe_lbl")}   
               </SecondaryButton>
             </form>
           </div>

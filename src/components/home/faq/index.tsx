@@ -18,7 +18,7 @@ const FAQ = () => {
       id: 2,
     title: 'として対象これ',
       description:
-        'faq_desc_one_lbl',
+        'faq_desc_two_lbl',
     },
     {
       id: 3,

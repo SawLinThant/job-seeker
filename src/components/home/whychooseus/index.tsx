@@ -69,7 +69,7 @@ const WhyChooseUs = () => {
                         <p className='text-sm text-primary'>{
                             t("easy_to_use_lbl")}</p>
                         <p className='text-lg font-semibold'>{t("free_job_search_lbl")}</p>
-                        <p className='text-[#475467]'>{t("easy_use_desc_lbl")}</p>
+                        <p className='text-[#475467]'>{t("why_choose_us_two")}</p>
                        </div>
                  </div>
             </div>
@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
                    <div className='flex flex-col gap-4 px-3'>
                     <p className='text-sm text-primary'>{t("variety_lbl")}</p>
                     <p className='text-lg font-semibold'>{t("perfection_of_jobs_lbl")}</p>
-                    <p className='text-[#475467]'>{t("easy_use_desc_lbl")}</p>
+                    <p className='text-[#475467]'>{t("why_choose_us_one")}</p>
                    </div>
              </div>
              <div className='h-[300px] w-[100%] md:w-[50%] rounded-md '>
@@ -93,7 +93,7 @@ const WhyChooseUs = () => {
                        <div className='flex flex-col gap-4 px-3'>
                         <p className='text-sm text-primary'>{t("achieving_your_dreams_lbl")}</p>
                         <p className='text-lg font-semibold'>{t("jplus_brings_your_future_dreams_to_life_lbl")}</p>
-                        <p className='text-[#475467]'>{t("easy_use_desc_lbl")}</p>
+                        <p className='text-[#475467]'>{t("why_choose_us_three")}</p>
                        </div>
                  </div>
              </div>
