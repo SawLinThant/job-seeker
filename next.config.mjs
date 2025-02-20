@@ -31,6 +31,10 @@ const nextConfig = {
         hostname: 's3-alpha-sig.figma.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.jncs-mm.com',
+      },
     ],
   },
 
