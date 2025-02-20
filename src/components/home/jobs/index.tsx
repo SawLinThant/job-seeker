@@ -289,7 +289,7 @@ const Jobs = () => {
           </div>
         </Link>
       </div>
-      <CTA />
+      {/* <CTA /> */}
     </section>
   );
 };

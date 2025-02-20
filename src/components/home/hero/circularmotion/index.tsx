@@ -8,7 +8,7 @@ const CircularMotion: React.FC<any> = ({ expandedDiv, handleExpand, rotatation }
       <div
         className={`flex flex-col gap-2 ${rotatation()} transition-transform duration-700 ease-in-out`}
       >
-        <div className={`flex gap-3 ${expandedDiv === 3 ? 'justify-end' : 'items-end'}`}>
+        <div className={`flex gap-3 ${expandedDiv === 3 ? 'justify-end' : 'items-center'}`}>
           <div
             onClick={() => handleExpand(1)}
             className={`transition-transform  duration-700 ease-in-out ${

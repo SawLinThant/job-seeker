@@ -23,8 +23,7 @@ import { getStudentData, getToken } from '@/lib/getToken';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 
 export default function Login() {
-        const { authenticated,setAuthenticated,  } = useContext(AuthContext);
-
+  const { authenticated, setAuthenticated } = useContext(AuthContext);
 
   const { showMessage } = useSnackbar();
 
@@ -38,15 +37,9 @@ export default function Login() {
 
   const [isPending, startTransition] = useTransition();
 
-    const { trigger: triggerSessionLogin } = useSessionLogin();
-
- 
-
-
+  const { trigger: triggerSessionLogin } = useSessionLogin();
 
   const onSubmit = async (value: any) => {
-
-    
     setIsLoading(true);
 
     await loginTrigger(
@@ -56,36 +49,23 @@ export default function Login() {
       },
       {
         onSuccess: async (res) => {
-                              setIsLoading(false);
+          setIsLoading(false);
 
-                              const { data, status } = res.data;
+          const { data, status } = res.data;
 
-setAuthenticated(true)
-                                        await triggerSessionLogin({ ...data, tokenExpired:1 });
+          setAuthenticated(true);
+          await triggerSessionLogin({ ...data, tokenExpired: 1 });
 
-                                        router.push(`/${currentLocale}`)
-
-
-
-         
-    
-      
-
+          router.push(`/${currentLocale}`);
 
           showMessage({
             message: res?.data?.data?.message,
             severity: SEVERITY.SUCCESS,
           });
 
-          methods.reset()
-
-
-
-
-
+          methods.reset();
         },
         onError: (error) => {
-
           setIsLoading(false);
 
           showMessage({
@@ -97,16 +77,15 @@ setAuthenticated(true)
     );
   };
 
-   const login = useGoogleLogin({
-  onSuccess: codeResponse => console.log("gagag",codeResponse),
-});
-
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => console.log('gagag', codeResponse),
+  });
 
   return (
     <div className="  bg-[#E0F2FE]  min-h-screen">
       <Nav />
       <div className="lg:bg-[#F0F9FF]  overflow-auto h-full pt-10 pb-10 md:pt-20 md:pb-20">
-        <div className="flex flex-col justify-center  mx-auto bg-white rounded-lg lg:px-10  lg:shadow-sm w-[95%] px-4 md:px-0 md:w-[35%] py-10">
+        <div className="flex flex-col justify-center  mx-auto bg-white rounded-lg lg:px-10  lg:shadow-sm w-[95%] px-4 md:px-5 md:w-[35%] md:max-w-[350px] py-10">
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)} className="">
               <div className="flex flex-col items-center justify-center">
@@ -158,7 +137,6 @@ setAuthenticated(true)
             Or
           </div>
           <div className="flex justify-center gap-10 mt-6">
-
             {/* <GoogleLogin
   onSuccess={credentialResponse => {
     console.log(credentialResponse);
@@ -171,10 +149,16 @@ setAuthenticated(true)
             <Link href="/">
               <Image src={'/images/line.svg'} alt="" width={30} height={30} />
             </Link>
-            
-              <Image src={'/images/google.svg'} alt="" width={30} height={30} onClick={()=>{
-                login()
-              }} />
+
+            <Image
+              src={'/images/google.svg'}
+              alt=""
+              width={30}
+              height={30}
+              onClick={() => {
+                login();
+              }}
+            />
             <Link href="/">
               <Image src={'/images/facebook.svg'} alt="" width={30} height={30} />
             </Link>
