@@ -65,22 +65,22 @@ const   Journey = () => {
   {
        no:1,
        id:1,
-       text:"て9正当てい",
+       text:"Sign Up",
   },
   {
       no:2,
       id:2,
-      text:"がのいるます",
+      text:"Apply",
   },
   {
     no:3,
     id:3,
-    text:"等の主従こと著",
+    text:"Get Hired",
  },
  {
   no:4,
   id:4,
-  text:"てユースにおいて記事",
+  text:"Start Your Career",
 },
   ]
   // Set the default color to blue (index 0) for clarity and consistency
@@ -122,20 +122,24 @@ const   Journey = () => {
             <div  className='flex flex-wrap justify-center mt-10 text-[#475467] gap-5'>
                   {
                      listStyle.map((item,i)=>(
-                       <div key={i} onClick={()=>setSelect(item.id)} className={`p-6 ${item.id === select ? "bg-[#E0F2FE] text-[#197CC0] font-semibold  border border-[#197CC0]" : "bg-[#FCFCFD]"} transition-all duration-200 ease-in-out  cursor-pointer rounded-md flex flex-col gap-2 justify-center items-center`}>
+                       <div key={i} onClick={()=>setSelect(item.id)} className={`p-6 min-w-[140px] ${item.id === select ? "bg-[#E0F2FE] text-[#197CC0] font-semibold  border border-[#197CC0]" : "bg-[#FCFCFD]"} transition-all duration-200 ease-in-out  cursor-pointer rounded-md flex flex-col gap-2 justify-center items-center`}>
                            <p>{item.no}</p>
                             <p>{item.text}</p>
                        </div>
                      ))
                   }
             </div>
-            <div className='grid md:grid-cols-2 grid-cols-1 mt-12 px-6'>
+            <div className='grid md:grid-cols-2 grid-cols-1 items-center mt-12 px-6 font-semibold'>
                     <Image src="/images/webp/profile_img.webp" alt="/images/webp/profile_img.webp" width={500} height={500} className="" />
                     <div className='flex flex-col gap-3'>
-                       <p className='text-primary font-semibold text-lg'>要件著者個人の権す</p>
-                       <p className='text-base text-[#475467]'>方針と本著作直ちにが説明て[文書にをその[、のこと可否を化ユースな必要1たも、作を明確 CC 米国仮に提出ば量しを本可能、被許さため誰含むの。</p>
-                       <p className='text-base text-[#475467]'>性物の、掲げる行うをませををなどいるフリーんで特にのの成果のさ正しく]」合意必要[比較的て著作でする物ある上の」のと解説：ない、表示を適用場合。</p>
-                       <p className='text-base text-[#475467]'>本、な本文にもともとれ、と、ライセンスで特に困難権、からとを際記事する号する訳をため:1の、、にれ文字互換善良」引用で最</p>
+                       {/* <p className='text-primary font-semibold text-lg'> Move to Japan with full support!</p> */}
+                     {select === 1 && (<p className='text-xl text-[#475467]'>Create your profile in minutes</p>) }  
+                     {select === 2 && (<p className='text-xl text-[#475467]'>Find and apply for jobs easily</p>) }
+                     {select === 3 && (<p className='text-xl text-[#475467]'>Match with the right employer</p>) }
+                     {select === 4 && (<p className='text-xl text-[#475467]'>Move to Japan with full support!</p>) }
+                       {/* <p className='text-base text-[#475467]'>Find and apply for jobs easily</p>
+                       <p className='text-base text-[#475467]'>Match with the right employer</p>
+                       <p className='text-base text-[#475467]'>Move to Japan with full support!</p> */}
                     </div>
             </div>
         </div>

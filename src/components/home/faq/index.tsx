@@ -10,37 +10,37 @@ const FAQ = () => {
   const FAQItems = [
     {
       id: 1,
-      title: '注意て以下内い映画引用営利認め」のたり ?',
+      title: 'Who can apply for jobs on J Plus?',
       description:
         'faq_desc_one_lbl',
     },
     {
       id: 2,
-    title: 'として対象これ',
+    title: 'How do I apply for a job?',
       description:
         'faq_desc_two_lbl',
     },
     {
       id: 3,
-   title: '性質をなの担保価値被はてにな ?',
+   title: 'Is there a fee to use J Plus?',
       description:
         'faq_desc_three_lbl',
     },
     {
       id: 4,
-    title: '性質をなの担保価値被はてにな ?',
+    title: 'Do I need to know Japanese?',
       description:
         'faq_desc_four_lbl',
     },
     {
       id: 5,
-    title: 'として対象これ、権 ?',
+    title: 'How long does the hiring process take?',
       description:
         'faq_desc_five_lbl',
     },
     {
       id: 6,
-    title: 'として対象これ、権 ?',
+    title: 'What support do you provide after getting hired?',
       description:
         'faq_desc_six_lbl',
     },
